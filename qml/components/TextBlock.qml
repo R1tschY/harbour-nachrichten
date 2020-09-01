@@ -11,10 +11,10 @@ Label {
     onLinkActivated: {
         if (link.indexOf("https://www.tagesschau.de/api2/") === 0) {
             pageStack.push(
-                Qt.resolvedUrl("../pages/LinkedContentPage.qml"),
-                { link: link })
+                Qt.resolvedUrl("../pages/ContentPage.qml"),
+                { url: link })
         } else {
-            console.log("Clicked extern link: " + link)
+            console.log("Clicked external link: " + link)
             Qt.openUrlExternally(link)
         }
     }

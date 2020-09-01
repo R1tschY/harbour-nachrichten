@@ -7,6 +7,12 @@ SilicaListView {
 
     property var item: ({})
 
+//    property alias updateCheckUrl: item.updateCheckUrl
+//    property alias details: item.details
+//    property alias content: item.content
+//    property alias detailsWeb: item.detailsweb
+//    property alias shareUrl: item.shareURL
+
     function contentItemSource(type) {
         var result = {
             "text": "../components/ContentText.qml",
@@ -51,7 +57,7 @@ SilicaListView {
         }
 
         TextBlock {
-            text: (!!item.topline) ? item.topline : ""
+            text: item.topline ? item.topline : ""
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.secondaryColor
             visible: !!text

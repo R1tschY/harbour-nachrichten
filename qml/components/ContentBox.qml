@@ -66,8 +66,8 @@ MouseArea {
             if (match[2] === "intern") {
                 console.log("Clicked intern link: " + match[1])
                 pageStack.push(
-                    Qt.resolvedUrl("../pages/LinkedContentPage.qml"),
-                    { link: match[1] })
+                    Qt.resolvedUrl("../pages/ContentPage.qml"),
+                    { url: match[1] })
             } else {
                 console.log("Clicked extern link: " + match[1])
                 Qt.openUrlExternally(match[1])

@@ -5,12 +5,49 @@ import "../components"
 Page {
     id: page
 
+    property string url
     property alias item: content.item
 
-    // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
+
+    onUrlChanged: reload()
+
+    function reload() {
+        content.item = {
+            details: content.item.details
+        }
+        newsRequest.reload()
+    }
 
     Content {
         id: content
+
+        PullDownMenu {
+            MenuItem {
+                text: "Aktuallisieren"
+                onClicked: page.reload()
+                visible: !!newsRequest.url
+            }
+            MenuItem {
+                text: "In Browser öffnen"
+                onClicked: Qt.openUrlExternally(item.detailsweb)
+                visible: !!content.item.detailsweb
+            }
+        }
+    }
+
+    NewsRequest {
+        id: newsRequest
+        url: !!page.url ? page.url : (!!content.item.details ? content.item.details : "")
+
+        onFinished: {
+            content.item = JSON.parse(response.data)
+        }
+    }
+
+    BusyIndicator {
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: page
+        running: newsRequest.busy
     }
 }

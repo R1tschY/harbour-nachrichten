@@ -5,9 +5,7 @@ import "../components"
 Page {
     id: page
 
-    property var _regions: {
-        JSON.parse(settings.getItem("regions") || "[]")
-    }
+    property var _regions: JSON.parse(settings.getItem("regions") || "[]")
 
     Component.onCompleted:  {
         console.log(_regions)
