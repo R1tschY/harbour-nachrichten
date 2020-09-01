@@ -10,42 +10,33 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = harbour-determinant
+TARGET = harbour-nachrichten
 
 CONFIG += sailfishapp
 CONFIG += link_pkgconfig
 
 PKGCONFIG += sailfishsecrets sailfishapp
 
-SOURCES += src/harbour-determinant.cpp \
-    src/connectionsmanager.cpp \
-    src/humanize.cpp \
-    src/models/chatsmodel.cpp \
-    src/models/messagerenderer.cpp \
-    src/models/roommembersmodel.cpp \
-    src/quotientintegration.cpp \
-    src/secretsservice.cpp \
-    src/store.cpp \
-    src/models/roomeventsmodel.cpp \
-    src/thumbnailprovider.cpp
+SOURCES += src/harbour-nachrichten.cpp \
+    src/jslistmodel.cpp \
+    src/jsonlistmodel.cpp \
+    src/settings.cpp
 
-DISTFILES += qml/harbour-determinant.qml \
-    TODO.txt \
-    qml/components/Avatar.qml \
-    qml/cover/CoverPage.qml \
-    qml/delegates/MessageDelegate.qml \
-    qml/delegates/StateMessageDelegate.qml \
-    qml/pages/LoginPage.qml \
-    qml/pages/RoomDetailsPage.qml \
-    qml/pages/StartupPage.qml \
+HEADERS +=  \
+    src/jslistmodel.h \
+    src/jsonlistmodel.h \
+    src/settings.h
+
+DISTFILES += qml/harbour-nachrichten.qml \
+    qml/components/*.qml \
+    qml/cover/*.qml \
+    qml/pages/*.qml \
     rpm/harbour-determinant.changes.in \
     rpm/harbour-determinant.changes.run.in \
     rpm/harbour-determinant.spec \
     rpm/harbour-determinant.yaml \
     translations/*.ts \
-    harbour-determinant.desktop \
-    qml/pages/RoomListPage.qml \
-    qml/pages/RoomChatPage.qml
+    harbour-nachrichten.desktop
 
 DEFINES += \
     QT_DEPRECATED_WARNINGS \
@@ -63,16 +54,4 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-determinant-de.ts
-
-HEADERS += \
-    src/connectionsmanager.h \
-    src/humanize.h \
-    src/models/chatsmodel.h \
-    src/models/messagerenderer.h \
-    src/models/roommembersmodel.h \
-    src/quotientintegration.h \
-    src/secretsservice.h \
-    src/store.h \
-    src/models/roomeventsmodel.h \
-    src/thumbnailprovider.h
+TRANSLATIONS += translations/harbour-nachrichten-de.ts
