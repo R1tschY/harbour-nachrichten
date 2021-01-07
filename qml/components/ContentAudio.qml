@@ -20,6 +20,19 @@ Item {
         width: page.width
         height: page.width * 9 / 16
 
+        MouseArea {
+            id: playButtonArea
+            anchors.fill: parent
+            onClicked: {
+                if (audioplayer.playbackState === MediaPlayer.PausedState
+                        || audioplayer.playbackState === MediaPlayer.StoppedState) {
+                    audioplayer.play()
+                } else {
+                    audioplayer.pause()
+                }
+            }
+        }
+
         Rectangle {
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -32,19 +45,6 @@ Item {
             width: Theme.itemSizeLarge
             height: Theme.itemSizeLarge
             radius: 15
-
-            MouseArea {
-                id: playButtonArea
-                anchors.fill: parent
-                onPressed: {
-                    if (audioplayer.playbackState === MediaPlayer.PausedState
-                            || audioplayer.playbackState === MediaPlayer.StoppedState) {
-                        audioplayer.play()
-                    } else {
-                        audioplayer.pause()
-                    }
-                }
-            }
         }
 
         Image {

@@ -129,16 +129,6 @@ Column {
             size: BusyIndicatorSize.Large
         }
 
-        MouseArea {
-            id: playArea
-            anchors.fill: parent
-            onPressed: {
-                if (mediaplayer.playbackState === MediaPlayer.PlayingState) {
-                    mediaplayer.pause()
-                }
-            }
-        }
-
         Rectangle {
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -151,17 +141,6 @@ Column {
             width: Theme.itemSizeLarge
             height: Theme.itemSizeLarge
             radius: 15
-
-            MouseArea {
-                id: playButtonArea
-                anchors.fill: parent
-                onPressed: {
-                    if (mediaplayer.playbackState === MediaPlayer.PausedState
-                            || mediaplayer.playbackState === MediaPlayer.StoppedState) {
-                        mediaplayer.play()
-                    }
-                }
-            }
         }
 
         Image {
@@ -174,6 +153,19 @@ Column {
             height: Theme.iconSizeLarge
             source: "image://theme/icon-l-play"
             visible: mediaplayer.playbackState !== MediaPlayer.PlayingState
+        }
+
+        MouseArea {
+            id: playButtonArea
+            anchors.fill: parent
+            onClicked: {
+                if (mediaplayer.playbackState === MediaPlayer.PausedState
+                        || mediaplayer.playbackState === MediaPlayer.StoppedState) {
+                    mediaplayer.play()
+                } else {
+                    mediaplayer.pause()
+                }
+            }
         }
     }
 
