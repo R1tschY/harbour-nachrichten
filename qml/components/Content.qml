@@ -21,7 +21,7 @@ SilicaListView {
 
             "box": "../components/ContentBox.qml",
 
-            "audio": "../components/ContentUnknown.qml",
+            "audio": "../components/ContentAudio.qml",
             "video": "../components/ContentVideo.qml",
             "image_gallery": "../components/ContentImageGallery.qml",
 
@@ -45,7 +45,7 @@ SilicaListView {
     header: Column {
         width: page.width
 
-        Image {
+        NImage {
             source: (item.images && item.images.length)
                 ? item.images[0].videowebl.imageurl
                 : ""

@@ -59,7 +59,7 @@ MouseArea {
             onLinkActivated: Qt.openUrlExternally(link)
         }
 
-        Image {
+        NImage {
             source: modelData.social.images.mittel16x9.imageurl
             width: page.width
             height: page.width * 9 / 16
@@ -69,7 +69,7 @@ MouseArea {
         }
     }
 
-    Image {
+    NImage {
         id: image
         y: Theme.paddingSmall
         source: modelData.social.avatar

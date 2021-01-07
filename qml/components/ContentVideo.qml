@@ -36,6 +36,7 @@ Column {
 
         MediaPlayer {
             id: mediaplayer
+            //audioRole: MediaPlayer.VideoRole
             source: modelData.video.streams.adaptivestreaming
             autoLoad: false
 

@@ -48,7 +48,7 @@ MouseArea {
         }
     }
 
-    Image {
+    NImage {
         id: image
         y: Theme.paddingSmall
         sourceRef: modelData.box.images
