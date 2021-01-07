@@ -12,6 +12,8 @@
 # The name of your application
 TARGET = harbour-nachrichten
 
+QT += multimedia
+
 CONFIG += sailfishapp
 CONFIG += link_pkgconfig
 
