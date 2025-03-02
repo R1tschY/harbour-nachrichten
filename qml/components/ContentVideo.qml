@@ -22,9 +22,10 @@ Column {
         width: page.width
         height: page.width * 9 / 16
 
-        Image {
+        NImage {
             anchors.fill: parent
-            source: modelData.video.teaserImage.videowebm.imageurl
+            spec: modelData.video.teaserImage
+            size: "16x9-" + page.width
             visible: _noMedia
         }
 

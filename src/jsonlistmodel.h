@@ -1,5 +1,4 @@
-#ifndef JSONLISTMODEL_H
-#define JSONLISTMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QJsonArray>
@@ -33,4 +32,3 @@ private:
     QStringList m_properties;
 };
 
-#endif // JSONLISTMODEL_H

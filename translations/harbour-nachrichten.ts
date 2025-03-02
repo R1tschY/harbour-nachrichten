@@ -9,7 +9,7 @@
     </message>
 </context>
 <context>
-    <name>FirstPage</name>
+    <name>HomePage</name>
     <message>
         <source>Einstellungen</source>
         <translation type="unfinished"></translation>

@@ -11,7 +11,7 @@ Page {
 
     NewsRequest {
         id: newsRequest
-        url: "https://www.tagesschau.de/api2/homepage/"
+        url: "https://www.tagesschau.de/api2u/homepage"
 
         onFinished: {
             var homepage = JSON.parse(response.data)
@@ -22,6 +22,12 @@ Page {
 
     Component.onCompleted: {
         newsRequest.reload()
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            pageStack.pushAttached(Qt.resolvedUrl("SelectRessortPage.qml"))
+        }
     }
 
     JsonListModel {
@@ -70,11 +76,12 @@ Page {
                 }
             }
 
-            Image {
+            NImage {
                 y: Theme.paddingSmall
-                sourceRef: teaserImage
-                width: Theme.itemSizeSmall
-                height: Theme.itemSizeSmall
+                spec: teaserImage
+                size: "1x1-144"
+                width: 144
+                height: 144
                 fillMode: Image.PreserveAspectCrop
                 busyIndicatorSize: BusyIndicatorSize.Small
             }
@@ -86,8 +93,6 @@ Page {
             }
         }
     }
-
-    SlideshowView { }
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {

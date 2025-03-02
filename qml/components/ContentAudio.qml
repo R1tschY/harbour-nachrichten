@@ -7,16 +7,17 @@ Item {
     height: image.height + titleColumn.height
 
     readonly property bool _loading:
-        mediaplayer.error === MediaPlayer.NoError
-        && (mediaplayer.status === MediaPlayer.Buffering
-            || mediaplayer.status === MediaPlayer.Stalled
-            || mediaplayer.status === MediaPlayer.Loading
-            || mediaplayer.status === MediaPlayer.Loaded)
+        audioplayer.error === MediaPlayer.NoError
+        && (audioplayer.status === MediaPlayer.Buffering
+            || audioplayer.status === MediaPlayer.Stalled
+            || audioplayer.status === MediaPlayer.Loading
+            || audioplayer.status === MediaPlayer.Loaded)
 
     NImage {
         id: image
 
-        sourceRef: modelData.audio.teaserImage
+        spec: modelData.teaserImage
+        size: "16x9-" + width
         width: page.width
         height: page.width * 9 / 16
 
@@ -95,20 +96,20 @@ Item {
         y: image.height
 
         TextBlock {
-            text: modelData.audio.title
+            text: modelData.title
             font.pixelSize: Theme.fontSizeMedium
             font.bold: true
         }
 
         TextBlock {
-            text: modelData.audio.text
+            text: modelData.text
             font.pixelSize: Theme.fontSizeSmall
         }
     }
 
     Audio {
         id: audioplayer
-        source: modelData.audio.stream
+        source: modelData.stream
         autoLoad: false
 
         onPlaybackStateChanged: positionSlider.value = audioplayer.position

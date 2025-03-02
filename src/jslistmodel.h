@@ -1,5 +1,4 @@
-#ifndef JSONLISTMODEL_H
-#define JSONLISTMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QJSValue>
@@ -8,7 +7,7 @@ class QJSEngine;
 
 class JsListModel : public QAbstractListModel {
     Q_OBJECT
-    Q_PROPERTY(QString values WRITE setValues NOTIFY valuesChanged)
+    Q_PROPERTY(QString values /* READ values */ WRITE setValues NOTIFY valuesChanged)
     Q_PROPERTY(QStringList properties READ properties WRITE setProperties NOTIFY propertiesChanged)
 
 public:
@@ -34,5 +33,3 @@ private:
     QVector<QJSValue> m_values;
     QStringList m_properties;
 };
-
-#endif // JSONLISTMODEL_H

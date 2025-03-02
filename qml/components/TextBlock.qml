@@ -7,6 +7,7 @@ Label {
     width: page.width
     wrapMode: Text.WordWrap
     linkColor: Theme.secondaryColor
+    textFormat: Text.StyledText
 
     onLinkActivated: {
         if (link.indexOf("https://www.tagesschau.de/api2/") === 0) {

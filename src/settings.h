@@ -1,5 +1,4 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#pragma once
 
 #include <QObject>
 #include <QScopedPointer>
@@ -50,5 +49,3 @@ private:
 };
 
 } // namespace Cute
-
-#endif // SETTINGS_H

@@ -7,17 +7,19 @@ Column {
 
     property var firstImage: modelData.gallery[0]
 
-    Image {
-        source: firstImage.videowebm.imageurl // TODO: other images?
+    NImage {
+        spec: modelData.gallery[0]
+        size: "16x9-" + width
         width: page.width
         height: page.width * 9 / 16
     }
 
     TextBlock {
         id: imageTitle
-        text: firstImage.title
+        text: firstImage.title ? firstImage.title : ""
         font.pixelSize: Theme.fontSizeSmall
         bottomPadding: Theme.paddingSmall
+        visible: !!text
 
         Rectangle {
             height: imageTitle.height

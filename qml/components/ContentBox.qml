@@ -7,8 +7,8 @@ MouseArea {
     height: Math.max(column.height, image.height) + Theme.paddingSmall * 2
     width: page.width
 
-    readonly property bool hasImage: !!modelData.box.images
-    readonly property int imageSize: hasImage ? Theme.itemSizeSmall : (Theme.horizontalPageMargin / 2)
+    readonly property var _image: modelData.box.image
+    readonly property int imageSize: !!_image ? Theme.itemSizeSmall : (Theme.horizontalPageMargin / 2)
 
     Rectangle {
         anchors.fill: parent
@@ -51,15 +51,20 @@ MouseArea {
     NImage {
         id: image
         y: Theme.paddingSmall
-        sourceRef: modelData.box.images
-        width: Theme.itemSizeSmall
-        height: Theme.itemSizeSmall
+        spec: _image
+        size: "1x1-144"
+        width: 144
+        height: 144
         fillMode: Image.PreserveAspectCrop
         busyIndicatorSize: BusyIndicatorSize.Small
-        visible: hasImage
+        visible: !!_image
     }
 
     onClicked: {
+        if (!modelData.box.link) {
+            return;
+        }
+
         var linkRe = /<a href="([^\"]+)" type="([^\"]+)">([^<]+)<\/a>/
         var match = linkRe.exec(modelData.box.link)
         if (match !== null) {

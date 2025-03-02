@@ -17,7 +17,7 @@ QT += multimedia
 CONFIG += sailfishapp
 CONFIG += link_pkgconfig
 
-PKGCONFIG += sailfishsecrets sailfishapp
+PKGCONFIG += sailfishapp
 
 SOURCES += src/harbour-nachrichten.cpp \
     src/jslistmodel.cpp \
@@ -31,8 +31,11 @@ HEADERS +=  \
 
 DISTFILES += qml/harbour-nachrichten.qml \
     qml/components/*.qml \
+    qml/components/DebugContent.qml \
     qml/cover/*.qml \
     qml/pages/*.qml \
+    qml/pages/JsonPage.qml \
+    qml/pages/SelectRessortPage.qml \
     rpm/harbour-determinant.changes.in \
     rpm/harbour-determinant.changes.run.in \
     rpm/harbour-determinant.spec \

@@ -3,13 +3,16 @@ import Sailfish.Silica 1.0
 import Cute.Storage 0.1
 import "pages"
 
-ApplicationWindow
-{
+ApplicationWindow {
+    id: app
+
+    property bool dbg: true
+
     Settings {
         id: settings
     }
 
-    initialPage: Component { FirstPage { } }
+    initialPage: Component { HomePage { } }
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations

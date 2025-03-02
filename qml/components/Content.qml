@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 import "."
 
 SilicaListView {
-    id: listView
+    id: contentView
 
     property var item: ({})
 
@@ -12,6 +12,10 @@ SilicaListView {
 //    property alias content: item.content
 //    property alias detailsWeb: item.detailsweb
 //    property alias shareUrl: item.shareURL
+
+    function itemSource(type) {
+        return app.dbg ? Qt.resolvedUrl("./DebugContent.qml") : contentItemSource(type)
+    }
 
     function contentItemSource(type) {
         var result = {
@@ -27,8 +31,8 @@ SilicaListView {
 
             "socialmedia": "../components/ContentTwitter.qml",
 
-            "related": "../components/ContentIgnore.qml",
-            "list": "../components/ContentIgnore.qml",
+            "related": "../components/ContentRelated.qml",
+            //"list": "../components/ContentIgnore.qml",
         }[type]
         if (result === undefined) {
             console.log("Unknown content type " + type)
@@ -40,15 +44,15 @@ SilicaListView {
     model: item.content
     anchors.fill: parent
 
-    spacing: Theme.paddingMedium
+    spacing: Theme.paddingLarge
 
     header: Column {
         width: page.width
+        spacing: Theme.paddingMedium
 
         NImage {
-            source: (item.images && item.images.length)
-                ? item.images[0].videowebl.imageurl
-                : ""
+            spec: item.teaserImage
+            size: "16x9-" + page.width
             width: page.width
             height: page.width * 9 / 16
             fillMode: Image.PreserveAspectFit
@@ -58,21 +62,37 @@ SilicaListView {
 
         TextBlock {
             text: item.topline ? item.topline : ""
+            textFormat: Text.PlainText
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.secondaryColor
             visible: !!text
         }
 
         TextBlock {
-            text: "<h1>" + item.title + "</h1>"
-            font.pixelSize: Theme.fontSizeExtraSmall
+            text: item.title ? item.title : ""
+            textFormat: Text.PlainText
+            font.pixelSize: Theme.fontSizeMedium
+            font.bold: true
+            visible: !!text
+        }
+
+        TextBlock {
+            text: "Stand: " + new Date(item.date).toLocaleString(Qt.locale("de_DE"), Locale.ShortFormat)
+            textFormat: Text.PlainText
+            font.pixelSize: Theme.fontSizeSmall
+            color: Theme.secondaryColor
+        }
+
+        Item {
+            width: parent.width
+            height: Theme.paddingLarge
         }
     }
 
     delegate: Loader {
         id: delegate
-        source: contentItemSource(modelData.type)
+        source: itemSource(modelData.type)
     }
 
-    VerticalScrollDecorator { flickable: listView }
+    VerticalScrollDecorator { flickable: contentView }
 }

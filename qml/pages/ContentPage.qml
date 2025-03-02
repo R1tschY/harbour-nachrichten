@@ -33,6 +33,11 @@ Page {
                 onClicked: Qt.openUrlExternally(item.detailsweb)
                 visible: !!content.item.detailsweb
             }
+            MenuItem {
+                text: "Show JSON"
+                onClicked: pageStack.push(Qt.resolvedUrl("./JsonPage.qml"), { content: content.item })
+                visible: app.dbg
+            }
         }
     }
 
